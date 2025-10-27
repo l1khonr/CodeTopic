@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './animations.css';
+
+@layer base {
+  :root {
+    --background: rgb(255, 255, 255);
+    --foreground: rgb(52, 50, 45);
+    --card: rgb(255, 255, 255);
+    --card-foreground: rgb(0, 0, 0);
+    --popover: rgb(255, 255, 255);
+    --popover-foreground: rgb(0, 0, 0);
+    --primary: rgb(255, 210, 30);
+    --primary-foreground: rgb(0, 0, 0);
+    --secondary: rgb(107, 114, 128);
+    --secondary-foreground: rgb(255, 255, 255);
+    --muted: rgb(245, 245, 245);
+    --muted-foreground: rgb(107, 114, 128);
+    --accent: rgb(224, 224, 224);
+    --accent-foreground: rgb(0, 0, 0);
+    --destructive: rgb(220, 38, 38);
+    --destructive-foreground: rgb(255, 255, 255);
+    --border: rgb(224, 224, 224);
+    --input: rgb(245, 245, 245);
+    --ring: rgb(255, 210, 30);
+    --chart-1: rgb(255, 210, 30);
+    --chart-2: rgb(255, 157, 0);
+    --chart-3: rgb(107, 114, 128);
+    --chart-4: rgb(75, 85, 99);
+    --chart-5: rgb(31, 41, 55);
+    --sidebar: rgb(255, 255, 255);
+    --sidebar-foreground: rgb(0, 0, 0);
+    --sidebar-primary: rgb(255, 210, 30);
+    --sidebar-primary-foreground: rgb(0, 0, 0);
+    --sidebar-accent: rgb(224, 224, 224);
+    --sidebar-accent-foreground: rgb(0, 0, 0);
+    --sidebar-border: rgb(224, 224, 224);
+    --sidebar-ring: rgb(255, 210, 30);
+    --font-sans: sans-serif;
+    --font-serif: serif;
+    --font-mono: monospace;
+    --radius: 0.5rem;
+    --shadow-x: 0;
+    --shadow-y: 0.25rem;
+    --shadow-blur: 0.5rem;
+    --shadow-spread: 0;
+    --shadow-opacity: 0.1;
+    --shadow-color: #000000;
+    --shadow-2xs: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
+    --shadow-md: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
+    --shadow-lg: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
+    --shadow-xl: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+    --shadow-2xl: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.25);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
+  .dark {
+    --background: rgb(52, 50, 45);
+    --foreground: rgb(255, 255, 255);
+    --card: rgb(26, 26, 26);
+    --card-foreground: rgb(255, 255, 255);
+    --popover: rgb(26, 26, 26);
+    --popover-foreground: rgb(255, 255, 255);
+    --primary: rgb(255, 210, 30);
+    --primary-foreground: rgb(0, 0, 0);
+    --secondary: rgb(107, 114, 128);
+    --secondary-foreground: rgb(255, 255, 255);
+    --muted: rgb(51, 51, 51);
+    --muted-foreground: rgb(176, 176, 176);
+    --accent: rgb(68, 68, 68);
+    --accent-foreground: rgb(255, 255, 255);
+    --destructive: rgb(239, 68, 68);
+    --destructive-foreground: rgb(255, 255, 255);
+    --border: rgb(68, 68, 68);
+    --input: rgb(51, 51, 51);
+    --ring: rgb(255, 210, 30);
+    --chart-1: rgb(255, 210, 30);
+    --chart-2: rgb(255, 157, 0);
+    --chart-3: rgb(107, 114, 128);
+    --chart-4: rgb(176, 176, 176);
+    --chart-5: rgb(204, 204, 204);
+    --sidebar: rgb(26, 26, 26);
+    --sidebar-foreground: rgb(255, 255, 255);
+    --sidebar-primary: rgb(255, 210, 30);
+    --sidebar-primary-foreground: rgb(0, 0, 0);
+    --sidebar-accent: rgb(68, 68, 68);
+    --sidebar-accent-foreground: rgb(255, 255, 255);
+    --sidebar-border: rgb(68, 68, 68);
+    --sidebar-ring: rgb(255, 210, 30);
+    --font-sans: sans-serif;
+    --font-serif: serif;
+    --font-mono: monospace;
+    --radius: 0.5rem;
+    --shadow-x: 0;
+    --shadow-y: 0.25rem;
+    --shadow-blur: 0.5rem;
+    --shadow-spread: 0;
+    --shadow-opacity: 0.25;
+    --shadow-color: #000000;
+    --shadow-2xs: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.13);
+    --shadow-xs: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.13);
+    --shadow-sm: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.25), 0 1px 2px -1px hsl(0 0% 0% / 0.25);
+    --shadow: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.25), 0 1px 2px -1px hsl(0 0% 0% / 0.25);
+    --shadow-md: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.25), 0 2px 4px -1px hsl(0 0% 0% / 0.25);
+    --shadow-lg: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.25), 0 4px 6px -1px hsl(0 0% 0% / 0.25);
+    --shadow-xl: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.25), 0 8px 10px -1px hsl(0 0% 0% / 0.25);
+    --shadow-2xl: 0 0.25rem 0.5rem 0 hsl(0 0% 0% / 0.63);
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Geist Typography Classes - from Vercel Design System */
+  .text-heading-72 { @apply text-[72px] leading-[80px] font-bold; }
+  .text-heading-64 { @apply text-[64px] leading-[72px] font-bold; }
+  .text-heading-56 { @apply text-[56px] leading-[64px] font-bold; }
+  .text-heading-48 { @apply text-[48px] leading-[56px] font-bold; }
+  .text-heading-40 { @apply text-[40px] leading-[48px] font-bold; }
+  .text-heading-32 { @apply text-[32px] leading-[40px] font-bold; }
+  .text-heading-24 { @apply text-[24px] leading-[32px] font-bold; }
+  .text-heading-20 { @apply text-[20px] leading-[28px] font-bold; }
+  .text-heading-16 { @apply text-[16px] leading-[24px] font-bold; }
+  .text-heading-14 { @apply text-[14px] leading-[20px] font-bold; }
+
+  .text-button-16 { @apply text-[16px] leading-[24px] font-medium; }
+  .text-button-14 { @apply text-[14px] leading-[20px] font-medium; }
+  .text-button-12 { @apply text-[12px] leading-[16px] font-medium; }
+
+  .text-label-20 { @apply text-[20px] leading-[28px]; }
+  .text-label-18 { @apply text-[18px] leading-[28px]; }
+  .text-label-16 { @apply text-[16px] leading-[24px]; }
+  .text-label-14 { @apply text-[14px] leading-[20px]; }
+  .text-label-14-mono { @apply text-[14px] leading-[20px] font-mono; }
+  .text-label-13 { @apply text-[13px] leading-[20px]; }
+  .text-label-13-mono { @apply text-[13px] leading-[20px] font-mono; }
+  .text-label-12 { @apply text-[12px] leading-[16px]; }
+  .text-label-12-mono { @apply text-[12px] leading-[16px] font-mono; }
+
+  .text-copy-24 { @apply text-[24px] leading-[32px]; }
+  .text-copy-20 { @apply text-[20px] leading-[28px]; }
+  .text-copy-18 { @apply text-[18px] leading-[28px]; }
+  .text-copy-16 { @apply text-[16px] leading-[24px]; }
+  .text-copy-14 { @apply text-[14px] leading-[20px]; }
+  .text-copy-13 { @apply text-[13px] leading-[20px]; }
+  .text-copy-13-mono { @apply text-[13px] leading-[20px] font-mono; }
+
+  /* ChatGPT Design Guidelines - Line clamping utilities */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  /* Scrollbar hide utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Focus and accessibility improvements */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .border {
+      border-width: 2px;
+    }
+  }
+}

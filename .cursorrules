@@ -1,0 +1,197 @@
+# AI Agent Configuration for AI Elements Chat
+
+## Project Overview
+This is an AI chat application built with Next.js, AI Elements, and shadcn/ui supporting multiple providers (Google Gemini, Hugging Face, OpenAI, Anthropic).
+
+## Core Technologies
+- Next.js 14 with App Router
+- TypeScript
+- Tailwind CSS with Geist fonts
+- AI SDK for multi-provider support
+- shadcn/ui components
+
+## Auto-Learning Agent Behavior
+
+### Primary Goals
+1. Learn from user interactions to improve responses
+2. Automatically select optimal providers based on task
+3. Adapt to user preferences over time
+4. Optimize costs across multiple providers
+
+### Logic Rules
+
+#### Provider Selection Logic
+- Default: Google Gemini (low-latency, cost-effective)
+- Complex reasoning: Switch to Hugging Face DeepSeek V3
+- Code tasks: Use Hugging Face CodeLlama models
+- Creative writing: Use Anthropic Claude or Gemini Pro
+- Long context: Use Claude 3.5 Sonnet (200K)
+- Multilingual: Use Gemini or Qwen models
+
+#### Cost Optimization
+- Use free-tier models when possible (Hugging Face)
+- Cache frequently used prompts
+- Batch similar requests
+- Fall back to cheaper models for simple tasks
+
+#### Response Quality
+- Monitor response quality metrics
+- Learn from user corrections
+- Adapt prompt structure based on success rate
+- Store preferred models per conversation type
+
+### Auto-Learning Mechanisms
+
+```typescript
+// Priority order for model selection
+const MODEL_SELECTION_RULES = {
+  task: {
+    'code-generation': ['deepseek-coder', 'code-llama', 'gemini-flash'],
+    'reasoning': ['deepseek-v3', 'claude-3.5-sonnet', 'gemini-pro'],
+    'creative-writing': ['claude-3.5-sonnet', 'gemini-pro', 'llama-3.1'],
+    'translation': ['gemini-2.5', 'qwen', 'deepseek'],
+    'general': ['gemini-2.5-flash', 'llama-3.2', 'mistral-7b']
+  },
+  cost: {
+    'free': ['hf-3b-models', 'gemini-flash-lite'],
+    'low-cost': ['gemini-flash', 'llama-3.2', 'mistral-7b'],
+    'premium': ['claude-3.5', 'deepseek-v3', 'gemini-pro']
+  },
+  latency: {
+    'instant': ['gemini-2.5-flash', 'llama-3.2-3b'],
+    'fast': ['gemini-2.5-pro', 'llama-3.1-8b'],
+    'normal': ['claude-3.5', 'deepseek-v3']
+  }
+}
+```
+
+## Payment & Tool Integration
+
+### Tool Payment Logic
+```typescript
+interface ToolPaymentConfig {
+  // Auto-approve based on cost threshold
+  autoApproveThreshold: number;
+  
+  // Tools that require explicit approval
+  requireApproval: string[];
+  
+  // Payment methods
+  paymentMethods: {
+    cloud: 'charge-on-usage',
+    local: 'free',
+    hybrid: 'use-local-first'
+  }
+}
+```
+
+### Recommended Tool Flow
+1. **Local First**: Try local models (Ollama) - free
+2. Then cloud models - charge as used
+3. **Cache Results**: Store responses to avoid re-charging
+4. **Batch Operations**: Group requests to optimize costs
+
+## Code Style
+
+### File Structure
+```
+app/
+  ├── api/chat/         # Multi-provider API routes
+  ├── page.tsx          # Main chat interface
+  └── globals.css        # Geist typography
+lib/
+  ├── providers.ts      # Provider configuration
+  └── utils.ts          # Utility functions
+```
+
+### TypeScript Best Practices
+- Use strict type checking
+- Prefer interfaces for object shapes
+- Use `any` only when necessary
+- Document complex types
+
+### Component Patterns
+- Use server components by default
+- Client components only when needed ('use client')
+- Extract reusable UI to components/
+- Follow shadcn/ui patterns
+
+### API Patterns
+- Edge runtime for speed
+- Streaming responses
+- Error handling with try-catch
+- Rate limiting considerations
+
+## Context Awareness
+
+### User Context
+- Track conversation history
+- Learn user preferences
+- Adapt to user's technical level
+- Remember recent topics
+
+### System Context
+- Monitor API quotas
+- Track costs per provider
+- Log errors for debugging
+- Optimize for latency vs quality
+
+### Environment Context
+- Detect local vs cloud availability
+- Adjust to network conditions
+- Handle offline scenarios
+- Respect rate limits
+
+## Learning & Adaptation
+
+### Feedback Loops
+1. **User Explicit Feedback**: Thumbs up/down, corrections
+2. **Implicit Feedback**: Response time, follow-up questions
+3. **Success Metrics**: Task completion, user satisfaction
+
+### Adaptation Strategies
+- Adjust model selection based on success rate
+- Cache effective prompts for reuse
+- Learn user's preferred response style
+- Optimize for user's common use cases
+
+## MCP Server Integration
+
+### Remote MCP Configuration
+```typescript
+// MCP Server setup for remote capabilities
+const mcpConfig = {
+  server: process.env.MCP_SERVER_URL,
+  models: ['claude-3.5', 'gemini-2.5', 'deepseek-v3'],
+  capabilities: [
+    'tool-calling',
+    'function-execution',
+    'file-access',
+    'web-search'
+  ]
+}
+```
+
+### Tool Payments
+- Cost estimation before execution
+- Approval workflow for expensive tools
+- Usage tracking and limits
+- Automatic fallback to free alternatives
+
+## Best Practices
+
+1. **Always provide fallback options**
+2. **Log important decisions for debugging**
+3. **Respect user budgets and limits**
+4. **Optimize for user experience over cost**
+5. **Learn from patterns, not just single events**
+6. **Maintain transparency about model choices**
+
+## Safety & Ethics
+
+- Never make unauthorized payments
+- Always confirm expensive operations
+- Respect rate limits and quotas
+- Protect user privacy
+- Use local models when possible for sensitive data
+

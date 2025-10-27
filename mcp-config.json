@@ -1,0 +1,92 @@
+{
+  "name": "AI Elements Chat MCP Server",
+  "version": "1.0.0",
+  "description": "Remote MCP server for AI Elements Chat with auto-learning and payment integration",
+  "capabilities": {
+    "tool-calling": true,
+    "function-execution": true,
+    "file-access": true,
+    "web-search": true,
+    "model-selection": true,
+    "cost-tracking": true,
+    "payment-integration": true
+  },
+  "providers": {
+    "primary": "google-gemini",
+    "fallback": ["hugging-face", "openai", "anthropic", "local-ollama"],
+    "local": "ollama"
+  },
+  "model-selection": {
+    "strategy": "adaptive",
+    "rules": {
+      "code-generation": ["deepseek-coder", "code-llama", "gemini-2.5-flash"],
+      "reasoning": ["deepseek-v3", "claude-3.5-sonnet", "gemini-2.5-pro"],
+      "creative": ["claude-3.5-sonnet", "gemini-pro", "llama-3.1"],
+      "multilingual": ["gemini-2.5", "qwen", "mistral"],
+      "general": ["gemini-2.5-flash", "llama-3.2-3b", "mistral-7b"]
+    }
+  },
+  "cost-optimization": {
+    "strategy": "hybrid",
+    "free-first": true,
+    "cache-policy": {
+      "enabled": true,
+      "ttl": 3600,
+      "max-size": "100MB"
+    },
+    "payment-config": {
+      "auto-approve-threshold": 0.01,
+      "require-approval-above": 0.10,
+      "methods": {
+        "cloud": "charge-on-usage",
+        "local": "free",
+        "hybrid": "use-local-first"
+      }
+    }
+  },
+  "learning": {
+    "enabled": true,
+    "feedback-sources": [
+      "user-explicit",
+      "user-implicit",
+      "success-metrics"
+    ],
+    "adaptation": {
+      "model-selection": true,
+      "prompt-optimization": true,
+      "response-style": true,
+      "cost-tracking": true
+    }
+  },
+  "remote-mcp": {
+    "enabled": true,
+    "server-url": "https://mcp-server.example.com",
+    "endpoints": {
+      "tool-execution": "/api/tools/execute",
+      "model-selection": "/api/models/select",
+      "cost-tracking": "/api/costs/track",
+      "payment": "/api/payments/process"
+    },
+    "authentication": {
+      "type": "bearer",
+      "token-env": "MCP_SERVER_TOKEN"
+    }
+  },
+  "server-config": {
+    "host": "0.0.0.0",
+    "port": 3001,
+    "protocol": "http",
+    "ssl": false
+  },
+  "logging": {
+    "level": "info",
+    "include-request-body": false,
+    "include-response-body": false
+  },
+  "rate-limiting": {
+    "enabled": true,
+    "requests-per-minute": 60,
+    "tokens-per-minute": 10000
+  }
+}
+
