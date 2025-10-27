@@ -49,6 +49,40 @@
   - High-quality icons and graphics
   - Branded UI elements
 
+### ✨ Delight Features
+
+- **User Delight Effects**
+  - Confetti celebrations 🎊
+  - Particle cursor trails ✨
+  - Animated feedback and transitions
+  - Sparkle and ripple effects
+
+- **Developer Easter Eggs**
+  - Konami Code activation 🎮
+  - Developer Mode (Ctrl+Shift+D) 👨‍💻
+  - Secret commands and jokes
+  - Time-based achievements 🦉
+
+- **Educational Mini-Games**
+  - Code Quiz Challenge 🧠 (8 programming questions)
+  - Speed Typing Game ⌨️ (WPM tracking)
+  - Achievement system 🏆
+  - Progress tracking
+
+- **Alternate UI Modes**
+  - Matrix Mode 🕶️ (falling code effect)
+  - Zen Mode 🧘 (minimalist, focused)
+  - Terminal Mode ⌨️ (full terminal emulator)
+  - Party Mode 🎉 (celebration effects)
+
+- **Achievement System**
+  - 12+ unlockable achievements
+  - Progress tracking
+  - Toast notifications
+  - Category filtering (Chat, Games, Easter Eggs, Expert)
+
+**See [DELIGHT_FEATURES.md](docs/DELIGHT_FEATURES.md) for complete guide!**
+
 ### 🛠 Technical Stack
 
 - **Frontend**
@@ -328,8 +362,10 @@ For advanced usage with AI Elements components, see the [official documentation]
 - [AI SDK Documentation](https://sdk.vercel.ai/docs)
 - [AI SDK llms.txt](https://ai-sdk.dev/llms.txt) - For AI assistants
 - [Project llms.txt](llms.txt) - Project documentation for AI assistants
-- [Getting Started Guide](GETTING_STARTED.md)
-- [Full Features Setup](FULL_FEATURES_SETUP.md)
+- [Getting Started Guide](docs/GETTING_STARTED.md)
+- [Full Features Setup](docs/FULL_FEATURES_SETUP.md)
+- [**Delight Features Guide**](docs/DELIGHT_FEATURES.md) - ✨ All fun features, Easter eggs, and mini-games
+- [Features Summary](docs/FEATURES_SUMMARY.md) - Complete implementation details
 
 ## For AI Assistants
 

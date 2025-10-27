@@ -55,6 +55,10 @@ export const metadata: Metadata = {
   ]
 };
 
+import { DelightFeaturesProvider } from '@/hooks/use-delight-features';
+import { Confetti } from '@/components/delight/confetti';
+import { Providers } from './providers';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,7 +72,12 @@ export default function RootLayout({
         <NextChatSDKBootstrap baseUrl={baseURL} />
       </head>
       <body>
-        {children}
+        <Providers>
+          <DelightFeaturesProvider>
+            <Confetti />
+            {children}
+          </DelightFeaturesProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -5,6 +5,8 @@ import { FeatureShowcase } from '@/components/marketing/feature-showcase';
 import { Providers } from './providers';
 import { EnhancedChat } from '@/components/enhanced-chat';
 
+import { ChatGPTExamples } from '@/components/chatgpt/example-usage';
+
 /**
  * Main Home component that renders the Codetopic AI chat application
  *
@@ -31,6 +33,9 @@ export default function Home() {
 
         {/* Enhanced Chat Interface with all delight features */}
         <EnhancedChat />
+
+        {/* ChatGPT UI Components */}
+        <ChatGPTExamples />
       </div>
     </Providers>
   );
