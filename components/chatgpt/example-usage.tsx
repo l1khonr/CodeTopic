@@ -12,12 +12,9 @@ import { Fullscreen } from './fullscreen';
 import { PictureInPicture } from './picture-in-picture';
 import * as icons from '@radix-ui/react-icons';
 
-import { useDelightFeatures } from '@/hooks/use-delight-features';
-
 export function ChatGPTExamples() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPiPActive, setIsPiPActive] = useState(false);
-  const { triggerConfetti } = useDelightFeatures();
 
   // Example: Weather Card
   const WeatherCard = () => (
@@ -275,17 +272,6 @@ export function ChatGPTExamples() {
 
       {/* PiP Window */}
       <GamePiP />
-
-      {/* Confetti Trigger */}
-      <section>
-        <h3 className="text-sm font-medium mb-3">Delightful Animation</h3>
-        <button
-          onClick={() => triggerConfetti()}
-          className="px-4 py-2 rounded-md bg-foreground text-background hover:bg-foreground/90"
-        >
-          Celebrate Success
-        </button>
-      </section>
     </div>
   );
 }

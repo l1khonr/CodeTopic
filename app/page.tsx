@@ -33,9 +33,6 @@ export default function Home() {
 
         {/* Enhanced Chat Interface with all delight features */}
         <EnhancedChat />
-
-        {/* ChatGPT UI Components */}
-        <ChatGPTExamples />
       </div>
     </Providers>
   );

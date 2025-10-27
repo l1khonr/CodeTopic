@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { useDelightFeatures } from '@/hooks/use-delight-features';
+
 interface QuizQuestion {
   question: string;
   code?: string;
@@ -89,6 +91,7 @@ export function CodeQuiz({ onClose }: CodeQuizProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [quizComplete, setQuizComplete] = useState(false);
+  const { triggerConfetti } = useDelightFeatures();
 
   const question = QUIZ_QUESTIONS[currentQuestion];
 
@@ -109,6 +112,9 @@ export function CodeQuiz({ onClose }: CodeQuizProps) {
       setShowExplanation(false);
     } else {
       setQuizComplete(true);
+      if (score >= QUIZ_QUESTIONS.length / 2) {
+        triggerConfetti();
+      }
     }
   };
 
