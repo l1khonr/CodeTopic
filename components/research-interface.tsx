@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ResearchTaskType } from '@/lib/research-agents';
 
 interface ResearchQuery {
@@ -47,22 +47,6 @@ export default function ResearchInterface() {
   const [researchHistory, setResearchHistory] = useState<any[]>([]);
   const [activeTasks, setActiveTasks] = useState<any[]>([]);
 
-  // Load research history on mount
-  useEffect(() => {
-    loadResearchHistory();
-  }, []);
-
-  // Poll for session status if we have an active session
-  useEffect(() => {
-    if (sessionId && activeTasks.length > 0) {
-      const interval = setInterval(() => {
-        loadSessionStatus();
-      }, 5000); // Poll every 5 seconds
-
-      return () => clearInterval(interval);
-    }
-  }, [sessionId, activeTasks]);
-
   const loadResearchHistory = async () => {
     try {
       const response = await fetch('/api/research', {
@@ -79,7 +63,7 @@ export default function ResearchInterface() {
     }
   };
 
-  const loadSessionStatus = async () => {
+  const loadSessionStatus = useCallback(async () => {
     if (!sessionId) return;
 
     try {
@@ -98,7 +82,23 @@ export default function ResearchInterface() {
     } catch (error) {
       console.error('Failed to load session status:', error);
     }
-  };
+  }, [sessionId]);
+
+  // Load research history on mount
+  useEffect(() => {
+    loadResearchHistory();
+  }, []);
+
+  // Poll for session status if we have an active session
+  useEffect(() => {
+    if (sessionId && activeTasks.length > 0) {
+      const interval = setInterval(() => {
+        loadSessionStatus();
+      }, 5000); // Poll every 5 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [sessionId, activeTasks, loadSessionStatus]);
 
   const startNewSession = async () => {
     try {

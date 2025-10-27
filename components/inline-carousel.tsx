@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import { cn } from '../lib/utils';
 
 export interface CarouselItem {
@@ -40,9 +41,11 @@ const InlineCarousel = React.forwardRef<HTMLDivElement, InlineCarouselProps>(
           >
             {/* Image */}
             <div className="aspect-video overflow-hidden rounded-t-lg">
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
+                width={400}
+                height={200}
                 className="h-full w-full object-cover"
               />
             </div>

@@ -275,4 +275,3 @@ export function ChatGPTExamples() {
     </div>
   );
 }
-

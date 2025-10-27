@@ -6,6 +6,7 @@
 'use client';
 
 import { useRef } from 'react';
+import Image from 'next/image';
 import * as icons from '@radix-ui/react-icons';
 
 export interface CarouselItem {
@@ -72,9 +73,11 @@ export function InlineCarousel({ items, title }: InlineCarouselProps) {
             >
               {/* Image */}
               <div className="aspect-video bg-muted relative">
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
+                  width={400}
+                  height={200}
                   className="w-full h-full object-cover"
                 />
                 {item.badge && (
@@ -126,4 +129,3 @@ export function InlineCarousel({ items, title }: InlineCarouselProps) {
     </div>
   );
 }
-
