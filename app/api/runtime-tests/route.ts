@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import RuntimeTestCases from '@/lib/runtime-test-cases';
+import RuntimeTestCases from '@codetopic/runtime-test-cases';
 
 const runtimeTestCases = new RuntimeTestCases();
 

@@ -1,0 +1,25 @@
+{
+  "name": "@codetopic/runtime-test-cases",
+  "version": "1.0.0",
+  "description": "Runtime test cases for AI agents - reusable plugin/module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "runtime",
+    "testing",
+    "ai-agents",
+    "webcontainer",
+    "nodejs"
+  ],
+  "author": "Codetopic",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

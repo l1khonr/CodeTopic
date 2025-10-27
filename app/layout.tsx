@@ -67,7 +67,9 @@ export default function RootLayout({
       <head>
         <NextChatSDKBootstrap baseUrl={baseURL} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }
