@@ -1,100 +1,165 @@
-# Codetopic Installation Guide
+# Installation Guide
 
-## 📦 Installation
+Follow these steps to get your AI Elements project up and running.
+
+## Step 1: Install Dependencies
+
+Run the following command to install all required dependencies:
 
 ```bash
-# Clone the repository
-git clone https://github.com/l1khonr/CodeTopic.git
-
-# Navigate to the project directory
-cd CodeTopic
-
-# Install dependencies
 npm install
-
-# Create environment file
-cp .env.example .env.local
-
-# Start development server
-npm run dev
 ```
 
-## 🔧 Environment Setup
+This will install:
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- AI SDK and React hooks
+- OpenAI integration
+
+## Step 2: Set Up Environment Variables
+
+Create a `.env.local` file in the root directory and add at least one API key:
+
+### Option 1: Google Gemini ⚡ (Recommended)
 
 ```env
-# Core Configuration
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-
-# Database Configuration
-DATABASE_URL=your_postgres_url
-
-# AI Providers
-OPENAI_API_KEY=your_openai_key
-GOOGLE_API_KEY=your_google_key
-ANTHROPIC_API_KEY=your_anthropic_key
-
-# Authentication
-NEXTAUTH_SECRET=your_nextauth_secret
-NEXTAUTH_URL=http://localhost:3000
-GITHUB_CLIENT_ID=your_github_client_id
-GITHUB_CLIENT_SECRET=your_github_client_secret
-
-# Storage
-BLOB_READ_WRITE_TOKEN=your_blob_token
+GOOGLE_GENERATIVE_AI_API_KEY=your-google-ai-api-key-here
 ```
 
-## 🎯 Quick Start Guide
+Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey).
 
-1. Clone and install dependencies as shown above
-2. Configure your environment variables
-3. Start the development server:
+**Why Google Gemini?** 
+- Millisecond response times
+- Excellent performance
+- Great for building fast AI applications
+
+### Option 2: Hugging Face
+
+```env
+HF_TOKEN=hf_your-hugging-face-token
+```
+
+Get your token from [Hugging Face settings](https://huggingface.co/settings/tokens).
+
+### Option 3: OpenAI
+
+```env
+OPENAI_API_KEY=sk-your-openai-api-key-here
+```
+
+Get your API key from [OpenAI's dashboard](https://platform.openai.com/api-keys).
+
+### Option 4: Anthropic Claude
+
+```env
+ANTHROPIC_API_KEY=sk-ant-your-anthropic-api-key-here
+```
+
+Get your API key from [Anthropic's console](https://console.anthropic.com/).
+
+### Using Multiple Providers
+
+You can add all four providers and switch between them:
+
+```env
+GOOGLE_GENERATIVE_AI_API_KEY=your-google-key
+HF_TOKEN=hf_your-hf-token
+OPENAI_API_KEY=sk-your-openai-key
+ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
+```
+
+The chat interface allows you to switch between providers in real-time!
+
+## Step 3: Install AI Elements Components
+
+Your project now has:
+- ✅ Next.js 14 with App Router
+- ✅ AI SDK installed
+- ✅ shadcn/ui configured (components.json)
+- ✅ Tailwind CSS with CSS Variables mode
+
+Install all AI Elements components at once using the AI Elements CLI:
+
+```bash
+npx ai-elements@latest
+```
+
+This single command will:
+- Set up shadcn/ui configuration if needed
+- Install all AI Elements components to your configured components directory
+- Add all necessary dependencies to your project
+
+### Alternative: Install Specific Components
+
+If you prefer to install specific components:
+
+```bash
+# Using AI Elements CLI
+npx ai-elements@latest add conversation message response code-block
+
+# Or using shadcn CLI directly
+npx shadcn@latest add https://registry.ai-sdk.dev/conversation.json
+npx shadcn@latest add https://registry.ai-sdk.dev/message.json
+```
+
+## Step 4: Run the Development Server
+
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-4. Visit [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000) to see your application.
 
-## 🤝 Contributing
+## Next Steps
 
-We welcome contributions! Please follow these steps:
+After installing the AI Elements components, you'll find them in the `components/ai-elements/` directory. You can now:
 
-1. Fork the repository
-2. Create your feature branch:
+1. Import and use them in your React components
+2. Customize them to match your design
+3. Explore other AI Elements components like `actions`, `branch`, `chain-of-thought`, etc.
 
-```bash
-git checkout -b feature/amazing-feature
-```
+See `app/page.tsx` for a basic example of using the chat functionality.
 
-3. Commit your changes:
+## Troubleshooting
 
-```bash
-git commit -m 'Add amazing feature'
-```
+### Component Not Found Error
 
-4. Push to the branch:
+If you see "Module not found" errors, make sure you've installed the AI Elements components using one of the methods above.
 
-```bash
-git push origin feature/amazing-feature
-```
+### API Route Not Working
 
-5. Create a Pull Request
+Ensure your `.env.local` file has the correct `OPENAI_API_KEY` set.
 
-## 📱 Community & Support
+### TypeScript Errors
 
-- **Telegram Community**: Join our [Telegram group](https://t.me/CodeTopic) for discussions
-- **GitHub Issues**: Report bugs or suggest features on our [issue tracker](https://github.com/l1khonr/CodeTopic/issues)
-- **Documentation**: Read our comprehensive [documentation](https://github.com/l1khonr/CodeTopic/wiki)
+Run `npm run build` to check for TypeScript errors. If you see missing type definitions, you may need to install additional type packages.
 
-## 📄 License
+## Available Components
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+After installation, you can use any of these AI Elements components:
 
-## 🙏 Acknowledgments
+- `conversation` - Container for chat conversations
+- `message` - Individual chat messages with avatars
+- `code-block` - Syntax-highlighted code display with copy
+- `response` - Formatted AI response display
+- `actions` - Interactive action buttons
+- `artifact` - Display code or documents
+- `branch` - Visualize conversation flows
+- `chain-of-thought` - Display AI reasoning
+- `context` - Show context consumption
+- `image` - AI-generated image display
+- `inline-citation` - Inline source citations
+- `loader` - Loading states
+- `open-in-chat` - Open in chat button
+- `prompt-input` - Advanced input with model selection
+- `reasoning` - Display AI reasoning
+- `sources` - Source attribution
+- `suggestion` - Quick action suggestions
+- `task` - Task completion tracking
+- `tool` - Tool usage visualization
+- `web-preview` - Web page previews
 
-- [Next.js Team](https://nextjs.org)
-- [Vercel](https://vercel.com)
-- [shadcn](https://ui.shadcn.com)
-- [Radix UI](https://www.radix-ui.com)
-- [Tailwind CSS](https://tailwindcss.com)
-- All our amazing contributors!
